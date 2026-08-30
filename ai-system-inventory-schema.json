@@ -1,0 +1,168 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AI System Inventory Entry",
+  "description": "Structured template for documenting an AI system through a governance lens. Based on NIST AI RMF (GOVERN, MAP) and ISO/IEC 42001 (Clause 6.1.4, Annex A.4, A.7).",
+  "type": "object",
+  "properties": {
+    "system": {
+      "type": "object",
+      "properties": {
+        "system_name": { "type": "string", "description": "e.g., Credit Scoring Model v3.2" },
+        "system_version": { "type": "string" },
+        "description": { "type": "string", "description": "Brief description of what the system does" },
+        "vendor_provider": { "type": "string", "description": "e.g., Acme AI Solutions or Internal — Data Science Team" },
+        "deployment_date": { "type": "string", "format": "date" },
+        "last_updated": { "type": "string", "format": "date" },
+        "system_owner": { "type": "string", "description": "Named individual responsible for the system" },
+        "business_sponsor": { "type": "string" },
+        "department": { "type": "string" },
+        "ai_type": { "type": "string", "enum": ["predictive", "generative", "agentic", "hybrid"] },
+        "risk_tier_eu_ai_act": { "type": "string", "enum": ["minimal", "limited", "high", "unacceptable", "not_applicable"] },
+        "risk_level_nist_ai_rmf": { "type": "string", "enum": ["low", "moderate", "high"] },
+        "industry_sector": { "type": "string" },
+        "business_criticality": { "type": "string", "enum": ["low", "medium", "high", "critical"] },
+        "deployment_environment": { "type": "string", "enum": ["production", "staging", "development", "deprecated"] },
+        "training_data_sources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "source": { "type": "string" },
+              "provenance": { "type": "string" },
+              "data_types": { "type": "string" },
+              "personal_data": { "type": "boolean" },
+              "sensitive_data": { "type": "boolean" }
+            }
+          }
+        },
+        "model_type": { "type": "string" },
+        "model_architecture": { "type": "string" },
+        "model_version": { "type": "string" },
+        "input_data_format": { "type": "string" },
+        "output_data_format": { "type": "string" },
+        "model_update_frequency": { "type": "string" },
+        "human_oversight": {
+          "type": "object",
+          "properties": {
+            "mechanism": { "type": "string" },
+            "escalation_threshold": { "type": "string" },
+            "override_capability": { "type": "boolean" }
+          }
+        },
+        "bias_fairness": {
+          "type": "object",
+          "properties": {
+            "testing_status": { "type": "string", "enum": ["not_started", "in_progress", "completed"] },
+            "methodology": { "type": "string" },
+            "last_test_date": { "type": "string", "format": "date" },
+            "findings": { "type": "string" }
+          }
+        },
+        "explainability": {
+          "type": "object",
+          "properties": {
+            "documentation_status": { "type": "string", "enum": ["not_started", "in_progress", "completed"] },
+            "method": { "type": "string" },
+            "model_card_available": { "type": "boolean" },
+            "datasheet_available": { "type": "boolean" }
+          }
+        },
+        "impact_assessment": {
+          "type": "object",
+          "properties": {
+            "status": { "type": "string", "enum": ["not_started", "in_progress", "completed"] },
+            "date_completed": { "type": "string", "format": "date" },
+            "summary": { "type": "string" }
+          }
+        },
+        "data_processing": {
+          "type": "object",
+          "properties": {
+            "personal_data_processed": { "type": "boolean" },
+            "data_categories": { "type": "string" },
+            "data_residency": { "type": "string" },
+            "cross_border_transfer": { "type": "boolean" },
+            "retention_period": { "type": "string" }
+          }
+        },
+        "security": {
+          "type": "object",
+          "properties": {
+            "encryption_at_rest": { "type": "boolean" },
+            "encryption_in_transit": { "type": "boolean" },
+            "access_controls": { "type": "string" },
+            "audit_logging": { "type": "boolean" }
+          }
+        },
+        "vendor": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "soc2_available": { "type": "boolean" },
+            "iso_27001_certified": { "type": "boolean" },
+            "iso_42001_certified": { "type": "boolean" },
+            "dpa_in_place": { "type": "boolean" },
+            "sub_processors": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "agentic": {
+          "type": "object",
+          "properties": {
+            "is_agentic": { "type": "boolean" },
+            "autonomy_classification": { "type": "string", "enum": ["read_only", "recommend", "approve", "execute"] },
+            "tools_apis_accessed": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "tool": { "type": "string" },
+                  "access_level": { "type": "string", "enum": ["read", "write", "execute", "admin"] }
+                }
+              }
+            },
+            "identity_model": { "type": "string", "enum": ["cryptographic_identity", "shared_api_keys"] },
+            "credentials_short_lived": { "type": "boolean" },
+            "kill_switch_owner": { "type": "string" },
+            "behavioral_monitoring": { "type": "boolean" },
+            "delegation_chains": { "type": "boolean" },
+            "red_teamed": { "type": "boolean" }
+          }
+        },
+        "monitoring": {
+          "type": "object",
+          "properties": {
+            "drift_detection": { "type": "boolean" },
+            "performance_monitoring": { "type": "boolean" },
+            "monitoring_frequency": { "type": "string" },
+            "alerting_thresholds": { "type": "string" }
+          }
+        },
+        "incident_history": {
+          "type": "object",
+          "properties": {
+            "total_incidents": { "type": "integer" },
+            "last_incident_date": { "type": "string", "format": "date" },
+            "summary": { "type": "string" }
+          }
+        },
+        "review": {
+          "type": "object",
+          "properties": {
+            "last_review_date": { "type": "string", "format": "date" },
+            "next_review_date": { "type": "string", "format": "date" },
+            "review_cadence": { "type": "string" }
+          }
+        }
+      },
+      "required": ["system_name", "ai_type", "risk_tier_eu_ai_act", "risk_level_nist_ai_rmf", "deployment_environment", "system_owner", "business_criticality"]
+    }
+  }
+}

@@ -1,0 +1,113 @@
+# Example: Bank Credit-Scoring Model
+# Filled-in example based on a financial services AI system inventory entry
+# Framework references: NIST AI RMF (GOVERN, MAP), ISO/IEC 42001 (Clause 6.1.4, Annex A.4, A.7)
+
+system:
+  # === System Identification ===
+  system_name: "Consumer Credit Scoring Model"
+  system_version: "3.2.1"
+  description: "Machine learning model that generates credit risk scores for consumer loan applications. Scores range from 300-850 and are used to inform automated approval, denial, or manual review decisions."
+  vendor_provider: "Internal — Data Science Team"
+  deployment_date: "2024-03-15"
+  last_updated: "2026-01-20"
+  system_owner: "VP of Risk Analytics"
+  business_sponsor: "Chief Risk Officer"
+  department: "Risk & Compliance"
+
+  # === Classification ===
+  ai_type: "predictive"
+  risk_tier_eu_ai_act: "high"
+  risk_level_nist_ai_rmf: "high"
+  industry_sector: "Financial Services"
+  business_criticality: "critical"
+  deployment_environment: "production"
+
+  # === Data and Model ===
+  training_data_sources:
+    - source: "Internal customer transaction database (2018-2023)"
+      provenance: "First-party, historical customer data"
+      data_types: "Structured (tabular) — transaction history, payment behavior, account tenure"
+      personal_data: true
+      sensitive_data: true
+    - source: "Credit bureau data (Equifax, Experian, TransUnion)"
+      provenance: "Third-party, licensed"
+      data_types: "Structured (tabular) — credit history, inquiries, public records"
+      personal_data: true
+      sensitive_data: true
+  model_type: "Gradient Boosting (XGBoost)"
+  model_architecture: "Ensemble of 500 decision trees, max depth 6"
+  model_version: "v3.2.1"
+  input_data_format: "JSON API payload — applicant demographics, financial attributes, credit history"
+  output_data_format: "Credit score (300-850), risk category (prime/subprime), top 5 contributing factors"
+  model_update_frequency: "Quarterly retraining with latest 24-month rolling window"
+
+  # === Governance Controls ===
+  human_oversight:
+    mechanism: "Human-in-the-loop review required for scores below 620 (subprime threshold). Automated approval for scores above 720 with no adverse credit events."
+    escalation_threshold: "Scores between 620-719 require manual underwriter review. Scores below 620 require senior underwriter approval."
+    override_capability: true
+  bias_fairness:
+    testing_status: "completed"
+    methodology: "Disparate impact analysis (80% rule), equal opportunity metric, demographic parity assessment across protected classes (race, gender, age)"
+    last_test_date: "2026-01-15"
+    findings: "Disparate impact ratio within acceptable range (>0.80) for all protected classes. Gender parity score: 0.92. Race parity score: 0.85. No remediation required."
+  explainability:
+    documentation_status: "completed"
+    method: "SHAP values for individual score explanations. Feature importance ranking for model-level explanations. Model card published."
+    model_card_available: true
+    datasheet_available: true
+  impact_assessment:
+    status: "completed"
+    date_completed: "2024-02-28"
+    summary: "High-risk AI system per EU AI Act. Significant impact on consumer access to credit. Fairness testing completed. Human oversight mechanisms in place. Documentation available for audit."
+
+  # === Privacy and Security ===
+  data_processing:
+    personal_data_processed: true
+    data_categories: "Names, SSN, date of birth, address, employment history, income, transaction history, credit bureau data"
+    data_residency: "US-East (Virginia)"
+    cross_border_transfer: false
+    retention_period: "7 years per regulatory requirement (FCRA)"
+  security:
+    encryption_at_rest: true
+    encryption_in_transit: true
+    access_controls: "RBAC, least privilege. Access restricted to Risk Analytics team and authorized underwriters."
+    audit_logging: true
+
+  # === Vendor Information ===
+  vendor:
+    name: "Internal — Data Science Team"
+    soc2_available: false
+    iso_27001_certified: true
+    iso_42001_certified: false
+    dpa_in_place: false
+    sub_processors:
+      - name: "Cloud infrastructure provider (AWS)"
+      - name: "Credit bureau data providers (Equifax, Experian, TransUnion)"
+
+  # === Agentic AI (not applicable) ===
+  agentic:
+    is_agentic: false
+    autonomy_classification: ""
+    tools_apis_accessed: []
+    identity_model: ""
+    credentials_short_lived: false
+    kill_switch_owner: ""
+    behavioral_monitoring: false
+    delegation_chains: false
+    red_teamed: false
+
+  # === Operational ===
+  monitoring:
+    drift_detection: true
+    performance_monitoring: true
+    monitoring_frequency: "Real-time performance dashboard. Weekly drift detection report. Monthly model performance review."
+    alerting_thresholds: "Drift > 5% PSI (Population Stability Index). Accuracy < 85%. Approval rate deviation > 10% from baseline."
+  incident_history:
+    total_incidents: 2
+    last_incident_date: "2025-09-12"
+    summary: "Sept 2025: Model drift detected due to economic conditions shift. Retrained with expanded data window. Feb 2025: False positive spike in fraud flagging due to data pipeline issue. Resolved in 4 hours."
+  review:
+    last_review_date: "2026-01-20"
+    next_review_date: "2026-04-20"
+    review_cadence: "Quarterly"

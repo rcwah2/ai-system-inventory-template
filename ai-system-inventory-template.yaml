@@ -1,0 +1,112 @@
+# AI System Inventory Template — YAML Schema
+# Version: 1.0
+# Framework references: NIST AI RMF (GOVERN, MAP), ISO/IEC 42001 (Clause 6.1.4, Annex A.4, A.7)
+#
+# Instructions: Copy this template and create one entry per AI system in your inventory.
+# Fill in all applicable fields. Delete or comment out fields that are not applicable.
+
+system:
+  # === System Identification ===
+  system_name: ""                    # e.g., "Credit Scoring Model v3.2"
+  system_version: ""                 # e.g., "3.2.1"
+  description: ""                    # Brief description of what the system does
+  vendor_provider: ""                # e.g., "Acme AI Solutions" or "Internal — Data Science Team"
+  deployment_date: ""                # YYYY-MM-DD
+  last_updated: ""                  # YYYY-MM-DD
+  system_owner: ""                   # Named individual responsible for the system
+  business_sponsor: ""              # Named individual or department sponsoring the system
+  department: ""                     # e.g., "Risk & Compliance", "Clinical Operations"
+
+  # === Classification ===
+  ai_type: ""                        # predictive | generative | agentic | hybrid
+  risk_tier_eu_ai_act: ""           # minimal | limited | high | unacceptable | not_applicable
+  risk_level_nist_ai_rmf: ""        # low | moderate | high
+  industry_sector: ""               # e.g., "Financial Services", "Healthcare", "Energy"
+  business_criticality: ""          # low | medium | high | critical
+  deployment_environment: ""        # production | staging | development | deprecated
+
+  # === Data and Model ===
+  training_data_sources:            # List of training data sources
+    - source: ""                    # e.g., "Internal customer transaction database"
+      provenance: ""                # e.g., "First-party, 2020-2024"
+      data_types: ""                # e.g., "Structured (tabular), transactional"
+      personal_data: false          # true if training data contains personal data
+      sensitive_data: false        # true if training data contains sensitive data (PHI, financial, etc.)
+  model_type: ""                    # e.g., "Gradient Boosting (XGBoost)", "Large Language Model"
+  model_architecture: ""            # e.g., "Transformer, 7B parameters"
+  model_version: ""                 # e.g., "v3.2.1"
+  input_data_format: ""            # e.g., "JSON API payload, structured tabular data"
+  output_data_format: ""           # e.g., "Credit score (0-1000), risk category, explanation"
+  model_update_frequency: ""        # e.g., "Quarterly retraining", "Continuous learning"
+
+  # === Governance Controls ===
+  human_oversight:
+    mechanism: ""                    # e.g., "Human-in-the-loop review for scores below threshold"
+    escalation_threshold: ""        # e.g., "Scores below 600 require manual review"
+    override_capability: true        # Can a human override the system's output?
+  bias_fairness:
+    testing_status: ""              # not_started | in_progress | completed
+    methodology: ""                  # e.g., "Disparate impact analysis, equal opportunity metric"
+    last_test_date: ""              # YYYY-MM-DD
+    findings: ""                    # Summary of findings
+  explainability:
+    documentation_status: ""        # not_started | in_progress | completed
+    method: ""                      # e.g., "SHAP values, feature importance, model cards"
+    model_card_available: false     # Is a model card available?
+    datasheet_available: false      # Is a datasheet available?
+  impact_assessment:
+    status: ""                      # not_started | in_progress | completed
+    date_completed: ""              # YYYY-MM-DD
+    summary: ""                     # Brief summary of impact assessment findings
+
+  # === Privacy and Security ===
+  data_processing:
+    personal_data_processed: false  # Does the system process personal data?
+    data_categories: ""            # e.g., "Names, SSN, transaction history"
+    data_residency: ""              # e.g., "US-East, EU"
+    cross_border_transfer: false    # Does data cross borders?
+    retention_period: ""           # e.g., "7 years per regulatory requirement"
+  security:
+    encryption_at_rest: true
+    encryption_in_transit: true
+    access_controls: ""             # e.g., "RBAC, least privilege"
+    audit_logging: true
+
+  # === Vendor Information (if third-party) ===
+  vendor:
+    name: ""
+    soc2_available: false
+    iso_27001_certified: false
+    iso_42001_certified: false      # Is the vendor ISO 42001 certified?
+    dpa_in_place: false             # Data Processing Agreement
+    sub_processors:                # List of sub-processors
+      - name: ""
+
+  # === Agentic AI (if applicable) ===
+  agentic:
+    is_agentic: false               # Does this system include autonomous agents?
+    autonomy_classification: ""     # read_only | recommend | approve | execute
+    tools_apis_accessed:             # List of tools/APIs the agent can access
+      - tool: ""
+        access_level: ""            # read | write | execute | admin
+    identity_model: ""              # cryptographic_identity | shared_api_keys
+    credentials_short_lived: false   # Are credentials short-lived (JIT)?
+    kill_switch_owner: ""            # Who holds kill-switch authority?
+    behavioral_monitoring: false     # Is behavioral monitoring in place?
+    delegation_chains: false        # Does the system involve multi-agent delegation?
+    red_teamed: false                # Has it been red-teamed against OWASP Top 10 for Agentic Applications?
+
+  # === Operational ===
+  monitoring:
+    drift_detection: false          # Is model drift detection in place?
+    performance_monitoring: false    # Is performance monitoring in place?
+    monitoring_frequency: ""        # e.g., "Real-time", "Daily", "Weekly"
+    alerting_thresholds: ""        # e.g., "Drift > 5%, accuracy < 85%"
+  incident_history:
+    total_incidents: 0
+    last_incident_date: ""          # YYYY-MM-DD
+    summary: ""                    # Brief summary of recent incidents
+  review:
+    last_review_date: ""           # YYYY-MM-DD
+    next_review_date: ""            # YYYY-MM-DD
+    review_cadence: ""              # e.g., "Quarterly", "Annually"
