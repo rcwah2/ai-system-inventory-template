@@ -59,7 +59,7 @@ system:
   impact_assessment:
     status: "completed"
     date_completed: "2024-02-28"
-    summary: "High-risk AI system per EU AI Act. Significant impact on consumer access to credit. Fairness testing completed. Human oversight mechanisms in place. Documentation available for audit."
+    summary: "High-risk AI system per EU AI Act (Annex III creditworthiness assessment; high-risk obligations apply from 2 December 2027 under the Regulation (EU) 2026/1744 amendment). Significant impact on consumer access to credit. Fairness testing completed. Human oversight mechanisms in place. Documentation available for audit."
 
   # === Privacy and Security ===
   data_processing:
